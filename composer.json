@@ -14,7 +14,9 @@
             "Src\\mcldb\\Classes\\" : "src/mcldb/Classes"
         }
     },
-    "require": {},
+    "require": {
+        "php": ">=7.4"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.2"
     }

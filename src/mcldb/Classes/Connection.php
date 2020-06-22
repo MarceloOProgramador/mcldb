@@ -7,29 +7,29 @@ use PDO;
 class Connection {
     
     private ?PDO    $instance = null;
-    private string  $errors;
-    private string  $statement;
-    private array   $options;
-    private string  $host;
-    private string  $db;
-    private string  $password;
-    private string  $root;
+    private string  $errors = "";
+    private string  $statement = "";
+    private array   $options = [];
+    private string  $host = "";
+    private string  $db = "";
+    private string  $password = "";
+    private string  $root = "";
     
     public function __construct(string $host, string $root, string $password, string $db, array $options = [])
     {
-        $this->setHost($host);
-        $this->setRoot($root);
-        $this->setPassword($password);
-        $this->setDb($db);
-        $this->setOptions($options);
-        
         if($this->instance == null)
         {
+            $this->setHost($host);
+            $this->setRoot($root);
+            $this->setPassword($password);
+            $this->setDb($db);
+            $this->setOptions($options);
+            
             $this->toConnect();
         }
     }
     
-    public function toConnect() : bool
+    private function toConnect() : void
     {
         $dns = "mysql:dbname={$this->getDb()};host={$this->getHost()}";
         
@@ -37,65 +37,79 @@ class Connection {
             $pdo = new PDO($dns, $this->getRoot(), $this->getPassword(), $this->getOptions());
             $this->setInstance($pdo);
         } catch (Exception $ex) {
-            $this->setErrors($ex->getMessage());
+            $this->setErrors($ex->getMessages());
         }
        
-        return true;
+        return;
     }
     
-    public function getInstance(): PDO {
+    public function getInstance(): PDO 
+    {
         return $this->instance;
     }
 
-    public function getErrors(): string {
+    public function getErrors(): string 
+    {
         return $this->errors;
     }
 
-    public function getStatement(): string {
+    public function getStatement(): string 
+    {
         return $this->statement;
     }
 
-    public function getOptions(): array {
+    public function getOptions(): array 
+    {
         return $this->options;
     }
 
-    public function getHost(): string {
+    public function getHost(): string 
+    {
         return $this->host;
     }
 
-    public function getDb(): string {
+    public function getDb(): string 
+    {
         return $this->db;
     }
 
-    public function getPassword(): string {
+    public function getPassword(): string 
+    {
         return $this->password;
     }
 
-    public function setInstance(PDO $instance): void {
+    public function setInstance(PDO $instance): void 
+    {
         $this->instance = $instance;
     }
 
-    public function setErrors(string $errors): void {
+    public function setErrors(string $errors): void 
+    {
         $this->errors = $errors;
     }
 
-    public function setStatement(string $statement): void {
+    public function setStatement(string $statement): void 
+    {
         $this->statement = $statement;
     }
 
-    public function setOptions(array $options): void {
+    public function setOptions(array $options): void 
+    {
         $this->options = $options;
     }
 
-    public function setHost(string $host): void {
+    public function setHost(string $host): void 
+    {
         $this->host = $host;
     }
 
-    public function setDb(string $db): void {
+    public function setDb(string $db): void 
+    {
         $this->db = $db;
     }
 
-    public function setPassword(string $password): void {
+    public function setPassword(string $password): void 
+    {
         $this->password = $password;
     }
     
