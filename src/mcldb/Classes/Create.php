@@ -4,7 +4,7 @@ namespace Src\mcldb\Classes;
 
 use Src\mcldb\Classes\Connection;
 
-class Create extends Connection{
+final class Create extends Connection{
     
     public function toCreate(string $table, array $params) : void
     {    

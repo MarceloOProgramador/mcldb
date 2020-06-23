@@ -36,8 +36,8 @@ class Connection {
         try{
             $pdo = new PDO($dns, $this->getRoot(), $this->getPassword(), $this->getOptions());
             $this->setInstance($pdo);
-        } catch (Exception $ex) {
-            $this->setErrors($ex->getMessages());
+        } catch (\PDOException $ex) {
+            $this->setErrors($ex->getMessage());
         }
        
         return;

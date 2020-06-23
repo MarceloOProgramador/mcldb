@@ -19,3 +19,4 @@ print "statemente = INSERT INTO {$fields} VALUES {$values}";
 print "<br><pre>";
 var_dump($arrayExecute);
 print "</pre>";
+
