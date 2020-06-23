@@ -6,27 +6,21 @@ use Src\mcldb\Classes\Connection;
 
 final class Create extends Connection{
     
+    private string $values = "";
+    
     public function toCreate(string $table, array $params) : void
-    {    
-        $fields = "";
-        $values = "";
+    {            
+        $this->setTable($table);
+        //INSERT INTO users (name, email, phone) VALUES (:name, :email, :phone);
         
         foreach ($params as $key => $value) {
-            $fields .= $key.', ';
-            $values .= ":{$key}, ";
-            $arrayExecute[":{$key}"] = $value;
+            $this->setFields("{$key}, ");
+            $this->values .= ":{$key}, ";
+            $this->setDatas(":{$key}", $value);
         }   
         
-        $fields = substr($fields, 0, -2);
-        $values = substr($values, 0, -2);
-        $this->setStatement("INSERT INTO {$table} ({$fields}) VALUES ({$values});");        
-        $query_prepared = $this->getInstance()->prepare($this->getStatement());
-        
-        try{
-            $query_prepared->execute($arrayExecute);
-        } catch (Exception $ex) {
-            $this->setErrors("Algo de errado ocorreu!");
-        }              
+        $this->values = substr($this->values, 0, -2);
+        $this->setStatement("INSERT INTO {$this->getTable()} (".substr($this->getFields(), 0, -2).") VALUES ({$this->values});");                
         
         return;
     }    
