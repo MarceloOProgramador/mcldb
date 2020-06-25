@@ -14,7 +14,7 @@ class Connection {
     private string  $db = "";
     private string  $password = "";
     private string  $root = "";
-    private array   $datas;
+    private array   $datas = [];
     private string  $table;
     private string  $fields = "";
     
@@ -36,12 +36,12 @@ class Connection {
      * 
      * @param string $field
      * @param string $operator
-     * @param string $primary_key
-     * @return \Src\mcldb\Classes\Update
+     * @param string $key
+     * @return void
      */
-    public function where(string $field, string $operator = "=", string $primary_key) : Update
+    public function where(string $field, string $operator = "=", string $key) : Connection
     {
-        $statement = $this->getStatement() . " WHERE {$field} {$operator} " . $primary_key;
+        $statement = $this->getStatement() . " WHERE {$field} {$operator} " . "'${key}'";
         $this->setStatement($statement);
         
         return $this;
@@ -56,7 +56,13 @@ class Connection {
     {
         try{
             $prepared = $this->getInstance()->prepare($this->getStatement());
-            $executed = $prepared->execute($this->getDatas());
+            
+            if($this->getDatas() !== null)
+            {
+                $executed = $prepared->execute($this->getDatas());
+            }else{
+                $executed = $prepared->execute();
+            }
             
             if($prepared->errorCode())
                 throw new \PDOException($prepared->errorInfo()[2], $prepared->errorInfo()[1]);
