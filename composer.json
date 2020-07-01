@@ -1,8 +1,7 @@
 {
-    "name": "root/mcldb",
+    "name": "mcl/mcldb",
     "type": "libary",
     "license": "MIT",
-    "version": "1.0.0",
     "authors": [
         {
             "name": "Marcelo Pereira",
@@ -16,7 +15,7 @@
         }
     },
     "require": {
-        "php": ">=7.4"
+        "php": "^7.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.2"
