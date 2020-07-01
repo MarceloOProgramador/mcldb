@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\mcldb\Classes;
+namespace Mcldb\Classes;
 
 use PDO;
 
@@ -57,7 +57,7 @@ class Connection {
         try{
             $prepared = $this->getInstance()->prepare($this->getStatement());
             
-            if($this->getDatas() !== null)
+            if(!!$this->getDatas() != null)
             {
                 $executed = $prepared->execute($this->getDatas());
             }else{

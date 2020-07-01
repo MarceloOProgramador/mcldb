@@ -1,8 +1,8 @@
 <?php
 
-namespace Src\mcldb\Classes;
+namespace Mcldb\Classes;
 
-use Src\mcldb\Classes\Connection;
+use Mcldb\Classes\Connection;
 
 final class Create extends Connection{
     
@@ -11,7 +11,6 @@ final class Create extends Connection{
     public function toCreate(string $table, array $params) : void
     {            
         $this->setTable($table);
-        //INSERT INTO users (name, email, phone) VALUES (:name, :email, :phone);
         
         foreach ($params as $key => $value) {
             $this->setFields("{$key}, ");

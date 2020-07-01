@@ -1,16 +1,26 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace Src\mcldb\Classes;
 
-/**
- * Description of Delete
- *
- * @author mpspo
- */
-class Delete {
-    //put your code here
+use Src\mcldb\Classes\Connection;
+
+class Delete extends Connection
+{
+    
+    public function toDelete($table): Delete
+    {
+        $statement = "DELETE FROM {$table}";
+        $this->setStatement($statement);
+        
+        try{
+            $prepared = $this->getInstance()->prepare($statement);
+            
+            if($prepared->errorCode())
+                throw new \PDOException($prepared->errorInfo()[2], $prepared->errorInfo()[1]);
+        } catch (\PDOException $e) {
+            $this->setErrors($e->getMessage());
+        }          
+        
+        return $this;
+    }    
 }

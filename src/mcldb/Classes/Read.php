@@ -1,8 +1,8 @@
 <?php 
 
-namespace Src\mcldb\Classes;
+namespace Mcldb\Classes;
 
-use Src\mcldb\Classes\Connection;
+use Mcldb\Classes\Connection;
 
 class Read extends Connection
 {

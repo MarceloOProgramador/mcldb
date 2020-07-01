@@ -4,6 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/mpspo/Documents/projetos/mcl-db/tests/Feature/ReadTest.php</file>
+            <file>file:/C:/Users/mpspo/Documents/projetos/mcl-db/src/mcldb/Classes/Delete.php</file>
+            <file>file:/C:/Users/mpspo/Documents/projetos/mcl-db/tests/Feature/DeleteTest.php</file>
             <file>file:/C:/Users/mpspo/Documents/projetos/mcl-db/src/mcldb/Classes/Read.php</file>
             <file>file:/C:/Users/mpspo/Documents/projetos/mcl-db/src/mcldb/Classes/Connection.php</file>
         </group>

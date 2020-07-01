@@ -2,6 +2,7 @@
     "name": "root/mcldb",
     "type": "libary",
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Marcelo Pereira",
@@ -11,7 +12,7 @@
     "minimum-stability": "stable",
     "autoload" : {
         "psr-4":{
-            "Src\\mcldb\\Classes\\" : "src/mcldb/Classes"
+            "Mcldb\\Classes\\" : "src/mcldb/Classes"
         }
     },
     "require": {
