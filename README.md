@@ -1,55 +1,70 @@
-# DESCRIPTION
-This libary is a simple database CRUD with some functions.
-It is created with private intention of studying php by Marcelo Pereira
-github: https://github.com/MarceloOProgramador; 
-e-mail: marceloopromador@gmail.com
+<center><h2> DESCRIPTION </h2></center>
 
-#CURRENT VERSION 1.0.0
+<p>
+    This libary is a simple database CRUD with some functions.
+    It is created with private intention of studying php by <strong>Marcelo Pereira</strong>.
+    github: https://github.com/MarceloOProgramador; 
+    e-mail: marceloopromador@gmail.com
+</p>
 
-#LICENSE MIT
+<ul>
+    <li>CURRENT VERSION <strong>1.0.0</strong></li>
+    <li>LICENSE <strong>MIT</strong></li>
+</ul>
 
-#EXAMPLES
+---
 
-#INSERT EXAMPLE
-$create_instance = new Create($host, $user, $pass, $database);
-$user = [
-    "name"  => "Example name",
-    "email" => "example@example.com"
-];
-$table_name = "users";
+<center><h2> EXAMPLES </h2></center>
 
-$create_instance->toCreate($table_name, $user);
-$create_instance->exec(); //method return boolean value
+<h3>INSERT EXAMPLE</h3>
+<p>
+$create_instance = new Create($host, $user, $pass, $database);<br>
+$user = [<br>
+    "name"  => "Example name",<br>
+    "email" => "example@example.com"<br>
+];<br>
+$table_name = "users";<br>
+<br>
+$create_instance->toCreate($table_name, $user);<br>
+$create_instance->exec(); //method return boolean value<br>
+</p>
 
+---
 
-#READ EXAMPLE
-$read_instance = new Read($host, $user, $pass, $database);
-$table_example = "users";
-$read_instance->toRead($table_example)->where("id", "=", 1);
-$user = $read_instance->fetch(); //return array
+<h3>READ EXAMPLE</h3>
+$read_instance = new Read($host, $user, $pass, $database);<br>
+$table_example = "users";<br>
+$read_instance->toRead($table_example)->where("id", "=", 1);<br>
+$user = $read_instance->fetch(); //return array<br>
+<br>
 
-#UPDATE EXAMPLE
-$table_name = "users";
-$update_instance = new Update($host, $user, $pass, $database);
-$read_instance = new Read($host, $user, $pass, $database);
+---
 
-$read_instance->toRead($table_name)->where("id", "=", 1);
-$user = $read_instance->fetch()[0]; //return array
+<h3>UPDATE EXAMPLE</h3>
+$table_name = "users";<br>
+$update_instance = new Update($host, $user, $pass, $database);<br>
+$read_instance = new Read($host, $user, $pass, $database);<br>
+<br>
+$read_instance->toRead($table_name)->where("id", "=", 1);<br>
+$user = $read_instance->fetch()[0]; //return array<br>
+<br>
+$user["name"] = "Name updated";<br>
+$user["email"] = "update@update.com";<br>
+<br>
+$update_instance->toUpdate($table_name, $user)->where("id", "=", $user["id"]);<br>
+$update_instance->exec();<br>
+<br>
 
-$user["name"] = "Name updated";
-$user["email"] = "update@update.com";
+---
 
-$update_instance->toUpdate($table_name, $user)->where("id", "=", $user["id"]);
-$update_instance->exec();
-
-#DELETE EXAMPLE
-$table_name = "users";
-$read_instance = new Read($host, $user, $pass, $database);
-$delete_instance = new Delete($host, $user, $pass, $database);
-
-$read_instance->toRead($table_name)->where("id", "=", 1);
-$user = $read_instance->fetch()[0]; 
-
-$delete_instance->toDelete($table_name)->where("id", "=", $user["id"]);
-$delete_instance->exec();
+<h3>DELETE EXAMPLE</h3>
+$table_name = "users";<br>
+$read_instance = new Read($host, $user, $pass, $database);<br>
+$delete_instance = new Delete($host, $user, $pass, $database);<br>
+<br>
+$read_instance->toRead($table_name)->where("id", "=", 1);<br>
+$user = $read_instance->fetch()[0]; <br>
+<br>
+$delete_instance->toDelete($table_name)->where("id", "=", $user["id"]);<br>
+$delete_instance->exec();<br>
 
