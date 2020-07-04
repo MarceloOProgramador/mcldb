@@ -1,14 +1,14 @@
 {
     "name": "mcl/mcldb",
-    "type": "libary",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Marcelo Pereira",
-            "email": "marcelooprogramador@gmail.com"
+            "email": "marcelooprogramador@gmail.com",
+            "homepage": "https://github.com/MarceloOProgramador" 
         }
     ],
-    "minimum-stability": "stable",
     "autoload" : {
         "psr-4":{
             "Mcldb\\Classes\\" : "src/mcldb/Classes"
