@@ -18,7 +18,7 @@
 
 <h3>INSERT EXAMPLE</h3>
 <p>
-$create_instance = new Create($host, $user, $pass, $database);<br>
+$create_instance = new Create();<br>
 $user = [<br>
     "name"  => "Example name",<br>
     "email" => "example@example.com"<br>
@@ -32,7 +32,7 @@ $create_instance->exec(); //method return boolean value<br>
 ---
 
 <h3>READ EXAMPLE</h3>
-$read_instance = new Read($host, $user, $pass, $database);<br>
+$read_instance = new Read();<br>
 $table_example = "users";<br>
 $read_instance->toRead($table_example)->where("id", "=", 1);<br>
 $user = $read_instance->fetch(); //return array<br>
@@ -42,8 +42,8 @@ $user = $read_instance->fetch(); //return array<br>
 
 <h3>UPDATE EXAMPLE</h3>
 $table_name = "users";<br>
-$update_instance = new Update($host, $user, $pass, $database);<br>
-$read_instance = new Read($host, $user, $pass, $database);<br>
+$update_instance = new Update();<br>
+$read_instance = new Read();<br>
 <br>
 $read_instance->toRead($table_name)->where("id", "=", 1);<br>
 $user = $read_instance->fetch()[0]; //return array<br>
@@ -59,8 +59,8 @@ $update_instance->exec();<br>
 
 <h3>DELETE EXAMPLE</h3>
 $table_name = "users";<br>
-$read_instance = new Read($host, $user, $pass, $database);<br>
-$delete_instance = new Delete($host, $user, $pass, $database);<br>
+$read_instance = new Read();<br>
+$delete_instance = new Delete();<br>
 <br>
 $read_instance->toRead($table_name)->where("id", "=", 1);<br>
 $user = $read_instance->fetch()[0]; <br>

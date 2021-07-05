@@ -18,7 +18,7 @@ class Connection {
     private string  $table;
     private string  $fields = "";
     
-    public function __construct(string $host, string $root, string $password, string $db, array $options = [])
+    private function __construct(string $host, string $root, string $password, string $db, array $options = [])
     {
         if($this->instance == null)
         {

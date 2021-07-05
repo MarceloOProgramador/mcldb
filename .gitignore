@@ -1,4 +1,3 @@
 vendor
-tests/*
-index
-nbproject
+/tests/Feature*
+/tests/Unit*
