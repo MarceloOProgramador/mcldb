@@ -15,7 +15,7 @@ It is created with private intention of studying php by **Marcelo Pereira**.
 #### INSERT EXAMPLE
 
 ```
-$create_instance = new Create($host, $user, $pass, $database);  
+$create_instance = new Create();  
 $user = [
     "name"  => "Example name",
     "email" => "example@example.com"
@@ -31,7 +31,7 @@ $create_instance->exec(); //method return boolean value
 ### READ EXAMPLE
 
 ```
-$read_instance = new Read($host, $user, $pass, $database);
+$read_instance = new Read();
 $table_example = "users";
 $read_instance->toRead($table_example)->where("id", "=", 1);
 $user = $read_instance->fetch(); //return array
