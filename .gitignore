@@ -1,4 +1,4 @@
 /vendor/
 /tests/Feature/*
 /tests/Unit/*
-.env
+\.env
