@@ -27,7 +27,7 @@ class Connection {
             $this->setUser($_SERVER['DB_USER']);
             $this->setPassword($_SERVER['DB_PASS']);
             $this->setDb($_SERVER['DB_NAME']);
-            $this->setOptions($_SERVER['DB_OPTIONS'] ? $_SERVER['DB_OPTIONS'] : []);
+            $this->setOptions($_SERVER['DB_OPTIONS'] ? $_SERVER['DB_OPTIONS'] : array());
             $this->toConnect();
         }
     }
