@@ -42,19 +42,19 @@ $user = $read_instance->fetch(); //return array
 ### UPDATE EXAMPLE
 
 ```
-$table_name = "users";<br>
-$update_instance = new Update();<br>
-$read_instance = new Read();<br>
-<br>
-$read_instance->toRead($table_name)->where("id", "=", 1);<br>
-$user = $read_instance->fetch()[0]; //return array<br>
-<br>
-$user["name"] = "Name updated";<br>
-$user["email"] = "update@update.com";<br>
-<br>
-$update_instance->toUpdate($table_name, $user)->where("id", "=", $user["id"]);<br>
-$update_instance->exec();<br>
-<br>
+$table_name = "users"; 
+$update_instance = new Update(); 
+$read_instance = new Read(); 
+ 
+$read_instance->toRead($table_name)->where("id", "=", 1); 
+$user = $read_instance->fetch()[0]; //return array 
+ 
+$user["name"] = "Name updated"; 
+$user["email"] = "update@update.com"; 
+ 
+$update_instance->toUpdate($table_name, $user)->where("id", "=", $user["id"]); 
+$update_instance->exec(); 
+ 
 
 $user["name"] = "Name updated";
 $user["email"] = "update@update.com";
@@ -68,13 +68,13 @@ $update_instance->exec();
 ### DELETE EXAMPLE
 
 ```
-$table_name = "users";<br>
-$read_instance = new Read();<br>
-$delete_instance = new Delete();<br>
-<br>
-$read_instance->toRead($table_name)->where("id", "=", 1);<br>
-$user = $read_instance->fetch()[0]; <br>
-<br>
-$delete_instance->toDelete($table_name)->where("id", "=", $user["id"]);<br>
-$delete_instance->exec();<br>
+$table_name = "users"; 
+$read_instance = new Read(); 
+$delete_instance = new Delete(); 
+ 
+$read_instance->toRead($table_name)->where("id", "=", 1); 
+$user = $read_instance->fetch()[0];  
+ 
+$delete_instance->toDelete($table_name)->where("id", "=", $user["id"]); 
+$delete_instance->exec(); 
 ```
