@@ -3,6 +3,7 @@
 namespace Mcldb\Classes;
 
 use PDO;
+use Dotenv\Dotenv;
 
 class Connection {
     
@@ -13,21 +14,22 @@ class Connection {
     private string  $host = "";
     private string  $db = "";
     private string  $password = "";
-    private string  $root = "";
+    private string  $user = "";
     private array   $datas = [];
     private string  $table;
     private string  $fields = "";
     
-    private function __construct(string $host, string $root, string $password, string $db, array $options = [])
+    public function __construct()
     {
         if($this->instance == null)
         {
-            $this->setHost($host);
-            $this->setRoot($root);
-            $this->setPassword($password);
-            $this->setDb($db);
-            $this->setOptions($options);
-            
+            $dotenv = Dotenv::createImmutable(__DIR__."/../../../");
+            $dotenv->load();
+            $this->setHost($_SERVER['DB_HOST']);
+            $this->setUser($_SERVER['DB_USER']);
+            $this->setPassword($_SERVER['DB_PASS']);
+            $this->setDb($_SERVER['DB_NAME']);
+            $this->setOptions($_SERVER['DB_OPTIONS'] ? $_SERVER['DB_OPTIONS'] : []);
             $this->toConnect();
         }
     }
@@ -83,7 +85,7 @@ class Connection {
         $dns = "mysql:dbname={$this->getDb()};host={$this->getHost()}";
         
         try{
-            $pdo = new PDO($dns, $this->getRoot(), $this->getPassword(), $this->getOptions());
+            $pdo = new PDO($dns, $this->getUser(), $this->getPassword(), $this->getOptions());
             $this->setInstance($pdo);
         } catch (\PDOException $ex) {
             $this->setErrors($ex->getMessage());
@@ -227,21 +229,21 @@ class Connection {
     
     /**
      * 
-     * @param string $root
+     * @param string $user
      * @return void
      */
-    public function setRoot(string $root) : void
+    public function setUser(string $user) : void
     {
-        $this->root = $root;
+        $this->user = $user;
     }
     
     /**
      * 
      * @return string
      */
-    public function getRoot():string
+    public function getUser():string
     {
-        return $this->root;
+        return $this->user;
     }
     
     /**
