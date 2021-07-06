@@ -23,7 +23,7 @@ $user = [
 $table_name = "users";
 
 $create_instance->toCreate($table_name, $user);
-$create_instance->exec(); //method return boolean value
+$create_instance->exec();
 ```
 
 ---
@@ -34,7 +34,7 @@ $create_instance->exec(); //method return boolean value
 $read_instance = new Read();
 $table_example = "users";
 $read_instance->toRead($table_example)->where("id", "=", 1);
-$user = $read_instance->fetch(); //return array
+$user = $read_instance->fetch();
 
 ```
 ---
