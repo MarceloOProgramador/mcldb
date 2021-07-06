@@ -1,3 +1,4 @@
-vendor
-/tests/Feature*
-/tests/Unit*
+/vendor/
+/tests/Feature/*
+/tests/Unit/*
+.env
