@@ -27,6 +27,7 @@ class Connection {
             $this->setUser($_SERVER['DB_USER']);
             $this->setPassword($_SERVER['DB_PASS']);
             $this->setDb($_SERVER['DB_NAME']);
+            $this->setOptions($_SERVER['DB_OPTIONS'] ? $_SERVER['DB_OPTIONS'] : null);
             $this->toConnect();
         }
     }
@@ -120,6 +121,15 @@ class Connection {
 
     /**
      * 
+     * @return array
+     */
+    public function getOptions(): array 
+    {
+        return $this->options;
+    }
+
+    /**
+     * 
      * @return string
      */
     public function getHost(): string 
@@ -173,6 +183,16 @@ class Connection {
     public function setStatement(string $statement): void 
     {
         $this->statement = $statement;
+    }
+
+    /**
+     * 
+     * @param array $options
+     * @return void
+     */
+    public function setOptions(array $options): void 
+    {
+        $this->options = $options;
     }
 
     /**
