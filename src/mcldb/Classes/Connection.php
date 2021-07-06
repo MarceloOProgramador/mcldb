@@ -23,8 +23,6 @@ class Connection {
     {
         if($this->instance == null)
         {
-            $dotenv = Dotenv::createImmutable(__DIR__."/../../../");
-            $dotenv->load();
             $this->setHost($_SERVER['DB_HOST']);
             $this->setUser($_SERVER['DB_USER']);
             $this->setPassword($_SERVER['DB_PASS']);
