@@ -3,7 +3,7 @@
 namespace Mcldb\Classes;
 
 use PDO;
-use Dotenv\Dotenv;
+use PDOException;
 
 class Connection {
     
@@ -52,44 +52,37 @@ class Connection {
      * @return bool
      * @throws \PDOException
      */
-    public function exec():bool
+    public function exec() : bool
     {
         try{
             $prepared = $this->getInstance()->prepare($this->getStatement());
-            
-            if(!!$this->getDatas() != null)
-            {
-                $executed = $prepared->execute($this->getDatas());
-            }else{
-                $executed = $prepared->execute();
-            }
-            
-            if($prepared->errorCode())
-                throw new \PDOException($prepared->errorInfo()[2], $prepared->errorInfo()[1]);
-            
-        } catch (\PDOException $ex) {
-            $this->setErrors($ex->getMessage());
-        }
-        
-        return $executed;     
+
+            if(!!$this->getDatas())
+                $prepared->execute($this->getDatas());
+            else
+               $prepared->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        } 
     }
     
     /**
      * 
      * @return void
      */
-    private function toConnect() : void
+    public function toConnect() : void
     {
         $dns = "mysql:dbname={$this->getDb()};host={$this->getHost()}";
-        
         try{
             $pdo = new PDO($dns, $this->getUser(), $this->getPassword(), $this->getOptions());
             $this->setInstance($pdo);
-        } catch (\PDOException $ex) {
-            $this->setErrors($ex->getMessage());
+            $this->getInstance()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
-       
-        return;
     }
     
     /**

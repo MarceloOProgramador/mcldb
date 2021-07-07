@@ -9,17 +9,9 @@ class Delete extends Connection
     
     public function toDelete($table): Delete
     {
-        $statement = "DELETE FROM {$table}";
-        $this->setStatement($statement);
+        $this->setStatement("DELETE FROM {$table}");
         
-        try{
-            $prepared = $this->getInstance()->prepare($statement);
-            
-            if($prepared->errorCode())
-                throw new \PDOException($prepared->errorInfo()[2], $prepared->errorInfo()[1]);
-        } catch (\PDOException $e) {
-            $this->setErrors($e->getMessage());
-        }          
+        $this->getInstance()->prepare($this->getStatement());       
         
         return $this;
     }    

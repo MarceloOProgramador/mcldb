@@ -11,15 +11,13 @@ class Read extends Connection
     {
         $fields_statement = "";
         
-        if(is_null($fields)){
+        if(is_null($fields))
             $statement = "SELECT * FROM {$table}";
-        }else{
-            foreach ($fields as $field){
+        else{
+            foreach ($fields as $field)
                 $fields_statement .= "{$field}, ";
-            }
             
             $fields_statement = substr($fields_statement, 0, -2);
-            
             $statement = "SELECT {$fields_statement} FROM {$table}";
         }
         
@@ -34,15 +32,10 @@ class Read extends Connection
         $datas = [];
         
         try{
-            $prepared->execute();
-            
-            if($prepared->errorCode() == null)
-                throw new \PDOException($prepared->errorInfo()[2], $prepared->errorInfo()[1]);
-            
+            $prepared->execute();            
             $datas = $prepared->fetchAll(\PDO::FETCH_ASSOC);
-            
         } catch (\PDOException $e) {
-            $this->setErrors($e->getMessage());
+            echo "Error:" . $e->getMessage();
         }
         
         return $datas;
